@@ -125,17 +125,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 md:pt-10 border-t border-[#1a1a1a] flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left text-[12px] md:text-[13px] text-[#666]">
+        <div className="pt-8 md:pt-10 border-t border-[#1a1a1a] flex flex-col sm:flex-row justify-center items-center gap-4 text-center sm:text-left text-[12px] md:text-[13px] text-[#666]">
           <p>© Copyright 2026 Zaro. All Rights Reserved.</p>
-          <div className="flex items-center gap-4">
-            <span>Powered by Framer</span>
-            <div className="bg-white text-black px-3 py-1 rounded flex items-center gap-2 font-bold text-[11px]">
-              <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                <div className="w-2 h-2 bg-white rotate-45"></div>
-              </div>
-              Made in Framer
-            </div>
-          </div>
         </div>
       </div>
     </footer>

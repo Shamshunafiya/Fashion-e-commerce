@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { collections1Data } from "../data/Collection.js";
 import ProductCard from "../components/ProductCard.jsx";
+import { offerbanner } from "../data/image.js";
 
 const offerProducts = [
   ...collections1Data.modern.slice(0, 2),
@@ -48,9 +49,21 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
 
   return (
     <div className="min-h-screen bg-white pt-[70px]">
-      {/* Main Sale Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#2d1b00] via-[#3d2817] to-[#1a0f08] px-8 py-20 text-white md:px-16 lg:px-20">
-        <div className="absolute inset-0 opacity-20">
+      {/* Main Sale Banner — BG IMAGE ADDED HERE */}
+      <div
+        className="relative overflow-hidden px-8 py-20 text-white md:px-16 lg:px-20"
+        style={{
+          backgroundImage: `url(${offerbanner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Dark overlay — keeps text readable over any bg image */}
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-[#2d1b00]/90 via-[#3d2817]/85 to-[#1a0f08]/90" /> */}
+
+        {/* Decorative radial glows */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(184,134,11,0.3)_0%,transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(212,175,55,0.2)_0%,transparent_50%)]" />
         </div>

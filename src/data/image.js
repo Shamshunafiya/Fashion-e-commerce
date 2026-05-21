@@ -70,6 +70,9 @@ import summer13 from "../img/summer13.jpg";
 import summer14 from "../img/summer14.webp";
 import summer15 from "../img/summer15.webp";
 
+export {
+  offerbanner,
+};
 // ============================================================================
 // IMAGE EXPORT OBJECT
 // ============================================================================
