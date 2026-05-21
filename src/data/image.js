@@ -47,6 +47,11 @@ import winter7  from "../img/winter -7.jpg";
 import winter8  from "../img/winter -8.jpg";
 import winter9  from "../img/winter -9.jpg";
 import winter10 from "../img/winter -10.jpg";
+import winter11 from "../img/winter11.webp";
+import winter12 from "../img/winter12.webp";
+import winter13 from "../img/winter13.webp";
+import winter14 from "../img/winter14.avif";
+import winter15 from "../img/winter15.jpg";
 
 // Summer Collection Images
 import summer1  from "../img/summer1.webp";
@@ -59,6 +64,11 @@ import summer7  from "../img/summer7.webp";
 import summer8  from "../img/summer8.webp";
 import summer9  from "../img/summer9.webp";
 import summer10 from "../img/summer10.webp";
+import summer11 from "../img/summer11.webp";
+import summer12 from "../img/summer12.webp";
+import summer13 from "../img/summer13.jpg";
+import summer14 from "../img/summer14.webp";
+import summer15 from "../img/summer15.webp";
 
 // ============================================================================
 // IMAGE EXPORT OBJECT
@@ -76,6 +86,11 @@ export const images = {
   modern8,
   modern9,
   modern10,
+  modern11,
+  modern12,
+  modern13, 
+  modern14,
+  modern15,
 
   // Traditional Collection
   trade1,
@@ -88,6 +103,11 @@ export const images = {
   trade8,
   trade9,
   trade10,
+  trade11,
+  trade12,
+  trade13,
+  trade14,
+  trade15,  
 
   // Winter Collection
   winter1,
@@ -100,6 +120,11 @@ export const images = {
   winter8,
   winter9,
   winter10,
+  winter11,
+  winter12,
+  winter13,
+  winter14,
+  winter15,
 
   // Summer Collection
   summer1,
@@ -112,6 +137,11 @@ export const images = {
   summer8,
   summer9,
   summer10,
+  summer11,
+  summer12,
+  summer13,
+  summer14,
+  summer15,
 
   // Slider Images (using existing photos)
   Slider1: trade1,

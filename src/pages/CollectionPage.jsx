@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { collectionsData } from "../data/Collection.js";
+// import { collectionsData } from "../data/Collection.js";
+import { collections1Data } from "../data/Catogory.js";
 import ProductCard from "../components/ProductCard.jsx";
 
 export default function CollectionsPage({ setCartOpen, navigateTo }) {
@@ -12,14 +13,14 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
   // Category data with Unsplash background images
   const categories = [
     {
-      id: "men",
+      id: "Mens",
       name: "Men's Collection",
       desc: "Premium menswear with modern cuts and timeless styles",
       color: "from-blue-600 to-blue-400",
       image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80",
     },
     {
-      id: "women",
+      id: "Womens",
       name: "Women's Collection",
       desc: "Elegant women's wear ranging from casual to formal",
       color: "from-pink-600 to-pink-400",
@@ -37,7 +38,17 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
   // Get all products for selected category
   const getProductsByCategory = () => {
     if (!selectedCategory) return [];
-    return collectionsData[selectedCategory] || [];
+    const categoryData = collections1Data[selectedCategory];
+    if (!categoryData) return [];
+    
+    // Flatten all products from nested sub-categories (modern, traditional, winter, summer)
+    const allProducts = [];
+    Object.values(categoryData).forEach((subCategory) => {
+      if (Array.isArray(subCategory)) {
+        allProducts.push(...subCategory);
+      }
+    });
+    return allProducts;
   };
 
   // Apply filters and sorting
@@ -45,7 +56,10 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
     let products = getProductsByCategory();
 
     if (seasonFilter !== "all") {
-      products = products.filter((p) => p.season === seasonFilter);
+      const categoryData = collections1Data[selectedCategory];
+      if (categoryData && categoryData[seasonFilter]) {
+        products = categoryData[seasonFilter];
+      }
     }
 
     if (priceFilter !== "all") {
@@ -70,9 +84,12 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
   }, [selectedCategory, sortBy, priceFilter, seasonFilter]);
 
   const getAvailableSeasons = () => {
-    const products = getProductsByCategory();
-    const seasons = [...new Set(products.map((p) => p.season))];
-    return seasons.sort();
+    if (!selectedCategory) return [];
+    const categoryData = collections1Data[selectedCategory];
+    if (!categoryData) return [];
+    
+    // Get all sub-category names (modern, traditional, winter, summer)
+    return Object.keys(categoryData).filter(key => Array.isArray(categoryData[key]));
   };
 
   // ── Category selection view ──────────────────────────────────────────────
@@ -215,14 +232,14 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
           {availableSeasons.length > 0 && (
             <div>
               <label className="block text-sm font-semibold text-[#4a3525] mb-2">
-                Style/Season
+                Collection Type
               </label>
               <select
                 value={seasonFilter}
                 onChange={(e) => setSeasonFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-[#d4ccc2] rounded-lg focus:outline-none focus:border-[#4a3525] transition-colors"
               >
-                <option value="all">All Styles</option>
+                <option value="all">All Types</option>
                 {availableSeasons.map((season) => (
                   <option key={season} value={season}>
                     {season.charAt(0).toUpperCase() + season.slice(1)}
@@ -239,7 +256,7 @@ export default function CollectionsPage({ setCartOpen, navigateTo }) {
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} item={product} setCartOpen={setCartOpen} />
+              <ProductCard key={product.id} item={product} setCartOpen={setCartOpen} navigateTo={navigateTo} />
             ))}
           </div>
         ) : (

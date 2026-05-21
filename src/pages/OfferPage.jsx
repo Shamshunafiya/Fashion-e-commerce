@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { collectionsData } from "../data/Collection.js";
+import { collections1Data } from "../data/Collection.js";
 import ProductCard from "../components/ProductCard.jsx";
 
 const offerProducts = [
-  ...collectionsData.modern.slice(0, 2),
-  ...collectionsData.traditional.slice(0, 2),
-  ...collectionsData.winter.slice(0, 2),
-  ...collectionsData.summer.slice(0, 2),
+  ...collections1Data.modern.slice(0, 2),
+  ...collections1Data.traditional.slice(0, 2),
+  ...collections1Data.winter.slice(0, 2),
+  ...collections1Data.summer.slice(0, 2),
 ];
 
 export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollection }) {

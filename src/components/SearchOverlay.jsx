@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Search } from "lucide-react";
-import { collectionsData } from "../data/Collection.js";
+import { collections1Data } from "../data/Collection.js";
 import ProductCard from "./ProductCard.jsx";
 
 const allProducts = [
-  ...collectionsData.modern,
-  ...collectionsData.traditional,
-  ...collectionsData.winter,
-  ...collectionsData.summer,
+  ...collections1Data.modern,
+  ...collections1Data.traditional,
+  ...collections1Data.winter,
+  ...collections1Data.summer,
 ];
 
 export default function SearchOverlay({ isOpen, onClose, setCartOpen }) {
