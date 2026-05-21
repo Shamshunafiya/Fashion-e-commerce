@@ -30,6 +30,6 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+}   
 
 export const useCart = () => useContext(CartContext);
