@@ -23,7 +23,7 @@ export default function HomePage() {
 
         {/* Background Text */}
         <div className="absolute right-[-20px] sm:right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none z-0">
-          <h1 className="text-[100px] sm:text-[180px] lg:text-[280px] font-bold text-[#b8860b10] leading-none tracking-[-6px] lg:tracking-[-10px] font-serif">
+          <h1 className="text-[100px] sm:text-[180px] lg:text-[280px] font-bold text-[#4a352510] leading-none tracking-[-6px] lg:tracking-[-10px] font-serif">
             ZORO
           </h1>
         </div>
@@ -33,7 +33,7 @@ export default function HomePage() {
 
           {/* LEFT CONTENT */}
           <div className="max-w-[620px] text-center lg:text-left">
-            <p className="text-[11px] sm:text-xs tracking-[4px] text-[#b8860b] uppercase font-semibold mb-4">
+            <p className="text-[11px] sm:text-xs tracking-[4px] text-[#4a3525] uppercase font-semibold mb-4">
               New Season 2026
             </p>
             <h1 className="font-serif text-[42px] sm:text-[58px] lg:text-[78px] leading-[1.05] text-[#1a1a1a] font-bold mb-6">
@@ -46,7 +46,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={() => navigate("/collections")}
-                className="px-8 py-4 bg-[#1a1a1a] text-white uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#b8860b]"
+                className="px-8 py-4 bg-[#1a1a1a] text-white uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#4a3525]"
               >
                 Shop Collections
               </button>

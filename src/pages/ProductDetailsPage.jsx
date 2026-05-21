@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../Context/CartContext.jsx";
 import { collectionsData } from "../data/Collection.js";
+import ProductCard from "../components/ProductCard.jsx";
 
 const allProducts = [
   ...collectionsData.modern,
@@ -9,6 +10,28 @@ const allProducts = [
   ...collectionsData.winter,
   ...collectionsData.summer,
 ];
+
+const isWomensProduct = (name) => {
+  const lowercase = name.toLowerCase();
+  return (
+    lowercase.includes("dress") ||
+    lowercase.includes("saree") ||
+    lowercase.includes("blouse") ||
+    lowercase.includes("anarkali") ||
+    lowercase.includes("dupatta") ||
+    lowercase.includes("lehenga") ||
+    lowercase.includes("choli") ||
+    lowercase.includes("salwar") ||
+    lowercase.includes("skirt") ||
+    lowercase.includes("midi") ||
+    lowercase.includes("crop") ||
+    lowercase.includes("gown") ||
+    lowercase.includes("kurti") ||
+    lowercase.includes("bralette") ||
+    lowercase.includes("women") ||
+    lowercase.includes("girl")
+  );
+};
 
 // Accordion component
 function Accordion({ title, children }) {
@@ -61,6 +84,11 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
       </div>
     );
   }
+
+  const isCurrentWomens = isWomensProduct(product.name);
+  const similarProducts = allProducts.filter(
+    (p) => isWomensProduct(p.name) === isCurrentWomens && p.id !== product.id
+  );
 
   const handleAddToCart = () => {
     addToCart({ ...product, qty });
@@ -212,6 +240,32 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
           </div>
         </div>
       </div>
+
+    {/* Similar Products Section */}
+      {similarProducts.length > 0 && (
+        <div className="mx-auto max-w-7xl px-6 pb-20 md:pb-28 md:px-16 lg:px-20">
+          <div className="border-t border-[#e6dfd3] pt-12 md:pt-16">
+            <div className="mb-8 text-center sm:text-left">
+              <p className="mb-2 font-sans text-[11px] font-bold uppercase tracking-[4px] text-[#8b5e3c]">
+                You May Also Like
+              </p>
+              <h3 className="font-serif text-[28px] sm:text-[36px] font-bold text-[#1a1a1a]">
+                Similar Products
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
+              {similarProducts.slice(0, 4).map((item) => (
+                <ProductCard
+                  key={item.id}
+                  item={item}
+                  setCartOpen={setCartOpen}
+                  navigateTo={navigateTo}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
