@@ -1,15 +1,24 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../Context/CartContext.jsx";
-import { collectionsData } from "../data/Collection.js";
-import ProductCard from "../components/ProductCard.jsx";
+import { collections1Data } from "../data/Catogory.js";
 
-const allProducts = [
-  ...collectionsData.modern,
-  ...collectionsData.traditional,
-  ...collectionsData.winter,
-  ...collectionsData.summer,
-];
+// Helper function to flatten all products from all categories
+const getAllProducts = () => {
+  const allProducts = [];
+  Object.values(collections1Data).forEach((categoryData) => {
+    if (typeof categoryData === "object" && categoryData !== null) {
+      Object.values(categoryData).forEach((subCategory) => {
+        if (Array.isArray(subCategory)) {
+          allProducts.push(...subCategory);
+        }
+      });
+    }
+  });
+  return allProducts;
+};
+
+const allProducts = getAllProducts();
 
 const isWomensProduct = (name) => {
   const lowercase = name.toLowerCase();
@@ -62,12 +71,28 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
     const found = allProducts.find((p) => p.id === id);
     setProduct(found);
     window.scrollTo(0, 0);
   }, [id]);
+
+  // Handle scroll for "Go to Top" button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (!product) {
     return (
@@ -93,7 +118,11 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
   const handleAddToCart = () => {
     addToCart({ ...product, qty });
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+    setShowToast(true);
+    setTimeout(() => {
+      setAdded(false);
+      setShowToast(false);
+    }, 2000);
     setCartOpen(true);
   };
 
@@ -107,6 +136,29 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
 
   return (
     <div className="min-h-screen bg-[#fdfaf7] pt-[70px]">
+      {/* Toast Notification for Cart Response */}
+      {showToast && (
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 animate-bounce">
+          <div className="bg-[#4a3525] text-white px-6 py-4 rounded-lg shadow-xl flex items-center gap-3 backdrop-blur-sm">
+            <span className="text-[24px]">✓</span>
+            <div className="flex flex-col">
+              <p className="font-sans text-[14px] font-bold">{product.name}</p>
+              <p className="font-sans text-[12px] text-[#d4b895]">Added to cart · Qty: {qty}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Go to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-40 bg-[#4a3525] text-white p-3 rounded-full shadow-lg hover:bg-[#6b4e31] transition-all duration-300 hover:scale-110"
+          title="Go to top"
+        >
+          <span className="text-[24px]">↑</span>
+        </button>
+      )}
       {/* Breadcrumb */}
       <div className="bg-[#f5f0ea] px-6 py-4 md:px-16 lg:px-20">
         <p className="font-sans text-[11px] font-bold uppercase tracking-[2px] text-[#8b5e3c]">
@@ -236,6 +288,16 @@ export default function ProductDetailsPage({ setCartOpen, navigateTo }) {
                   </div>
                 </div>
               </Accordion>
+
+              {/* Go to Top Button */}
+              <div className="border-t border-[#e6dfd3] mt-8 pt-8">
+                <button
+                  onClick={scrollToTop}
+                  className="w-full flex items-center justify-center gap-2 rounded-md bg-[#f5f0ea] px-6 py-4 font-sans text-[13px] font-bold uppercase tracking-[2px] text-[#4a3525] transition-all duration-300 hover:bg-[#e6dfd3] hover:gap-3"
+                >
+                  <span>↑</span> Back to Top
+                </button>
+              </div>
             </div>
           </div>
         </div>
