@@ -11,7 +11,7 @@ export default function HomePage() {
 
       {/* HERO SLIDER */}
       <SliderPage />
-      
+
       {/* FASHION CATEGORIES SCROLL SECTION */}
       <ScrollPage />
 
@@ -46,13 +46,16 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={() => navigate("/collections")}
-                className="px-8 py-4 bg-[#1a1a1a] text-white uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#4a3525]"
+
+                className="px-8 py-4 rounded-full bg-[#1a1a1a] text-white uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#b8860b]"
+
               >
                 Shop Collections
               </button>
+
               <button
                 onClick={() => navigate("/shop")}
-                className="px-8 py-4 border border-[#1a1a1a] text-[#1a1a1a] uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#1a1a1a] hover:text-white"
+                className="px-8 py-4 rounded-full border border-[#1a1a1a] text-[#1a1a1a] uppercase tracking-[3px] text-[11px] transition-all duration-300 hover:bg-[#1a1a1a] hover:text-white"
               >
                 All Products
               </button>
@@ -70,9 +73,8 @@ export default function HomePage() {
               <div
                 key={i}
                 onClick={() => navigate("/collections")}
-                className={`overflow-hidden shadow-xl cursor-pointer group ${
-                  i % 2 === 0 ? "h-[220px] sm:h-[280px]" : "h-[180px] sm:h-[240px] mt-6"
-                }`}
+                className={`overflow-hidden shadow-xl cursor-pointer group ${i % 2 === 0 ? "h-[220px] sm:h-[280px]" : "h-[180px] sm:h-[240px] mt-6"
+                  }`}
               >
                 <img
                   src={item.src}
