@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { ShoppingBag, Search, Menu, X, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../Context/CartContext.jsx";
 import SearchOverlay from "./SearchOverlay.jsx";
 
 const Navbar = ({ setCartOpen }) => {
   const { cartItems } = useCart();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const isActive = (path) => {
+    if (path === "/" && (location.pathname === "/" || location.pathname === "/home")) {
+      return true;
+    }
+    return location.pathname === path;
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -55,45 +63,90 @@ const Navbar = ({ setCartOpen }) => {
             <li>
               <Link
                 to="/"
-                className="text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300"
+                className={`text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300 relative py-1 ${
+                  isActive("/") ? "text-[#b08d57]" : "text-[#1a1a1a]"
+                }`}
               >
                 Home
+                {isActive("/") && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
 
             <li>
               <Link
                 to="/shop"
-                className="text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300"
+                className={`text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300 relative py-1 ${
+                  isActive("/shop") ? "text-[#b08d57]" : "text-[#1a1a1a]"
+                }`}
               >
                 Shop
+                {isActive("/shop") && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
 
             <li>
               <Link
                 to="/collections"
-                className="text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300"
+                className={`text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300 relative py-1 ${
+                  isActive("/collections") ? "text-[#b08d57]" : "text-[#1a1a1a]"
+                }`}
               >
                 Collections
+                {isActive("/collections") && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
 
             <li>
               <Link
                 to="/about"
-                className="text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300"
+                className={`text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300 relative py-1 ${
+                  isActive("/about") ? "text-[#b08d57]" : "text-[#1a1a1a]"
+                }`}
               >
                 About
+                {isActive("/about") && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
 
             <li>
               <Link
                 to="/contact"
-                className="text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300"
+                className={`text-[14px] font-medium uppercase tracking-[1px] hover:text-[#b08d57] transition-all duration-300 relative py-1 ${
+                  isActive("/contact") ? "text-[#b08d57]" : "text-[#1a1a1a]"
+                }`}
               >
                 Contact
+                {isActive("/contact") && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b08d57]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
           </ul>
@@ -182,9 +235,16 @@ const Navbar = ({ setCartOpen }) => {
                           : `/${item.toLowerCase()}`
                       }
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-[32px] font-semibold hover:text-[#b08d57] transition-colors duration-300"
+                      className={`text-[32px] font-semibold transition-colors duration-300 relative inline-block ${
+                        isActive(item === "Home" ? "/" : `/${item.toLowerCase()}`)
+                          ? "text-[#b08d57]"
+                          : "text-[#1a1a1a] hover:text-[#b08d57]"
+                      }`}
                     >
                       {item}
+                      {isActive(item === "Home" ? "/" : `/${item.toLowerCase()}`) && (
+                        <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#b08d57]" />
+                      )}
                     </Link>
                   </motion.li>
                 )
