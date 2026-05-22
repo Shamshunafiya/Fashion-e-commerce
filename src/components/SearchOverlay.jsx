@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Search } from "lucide-react";
 import { collections1Data } from "../data/Collection.js";
 import ProductCard from "./ProductCard.jsx";
+import { useNavigate } from "react-router-dom";
 
 const allProducts = [
   ...collections1Data.modern,

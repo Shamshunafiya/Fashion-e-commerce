@@ -126,7 +126,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 md:pt-10 border-t border-[#1a1a1a] flex flex-col sm:flex-row justify-center items-center gap-4 text-center sm:text-left text-[12px] md:text-[13px] text-[#666]">
-          <p>© Copyright 2026 Zaro. All Rights Reserved.</p>
+          <p>© Copyright 2026 Zaro. All Rights Reserved..</p>
         </div>
       </div>
     </footer>
