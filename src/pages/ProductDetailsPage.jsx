@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../Context/CartContext.jsx";
 import { collections1Data } from "../data/Catogory.js";
+import ProductCard from "../components/ProductCard.jsx";
 
 // Helper function to flatten all products from all categories
 const getAllProducts = () => {
