@@ -16,7 +16,7 @@ export default function LogoMarquee() {
         <section className="w-full overflow-hidden bg-[#f5f3f1] py-24">
 
 
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden ">
                 <motion.div
                     className="flex gap-24 w-max"
                     animate={{

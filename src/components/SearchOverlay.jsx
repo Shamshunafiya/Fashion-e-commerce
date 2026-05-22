@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Search } from "lucide-react";
+import { collections1Data } from "../data/Collection.js";
+import ProductCard from "./ProductCard.jsx";
 import { useNavigate } from "react-router-dom";
-import { collectionsData } from "../data/Collection.js";
 
 const allProducts = [
-  ...collectionsData.modern,
-  ...collectionsData.traditional,
-  ...collectionsData.winter,
-  ...collectionsData.summer,
+  ...collections1Data.modern,
+  ...collections1Data.traditional,
+  ...collections1Data.winter,
+  ...collections1Data.summer,
 ];
 
 const isWomensProduct = (name) => {

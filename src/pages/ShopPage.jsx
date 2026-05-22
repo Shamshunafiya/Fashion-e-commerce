@@ -1,4 +1,4 @@
-import { collectionsData } from "../data/Collection.js";
+import { collections1Data } from "../data/Collection.js";
 import ProductCard from "../components/ProductCard.jsx";
 
 // Unsplash premium fashion image matching the coffee/beige aesthetic
@@ -6,10 +6,10 @@ const heroBg = "https://images.unsplash.com/photo-1445205170230-053b83016050?aut
 
 // One product per collection for Trending section
 const trendingProducts = [
-  collectionsData.modern.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collectionsData.modern[0],
-  collectionsData.traditional.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collectionsData.traditional[0],
-  collectionsData.winter.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collectionsData.winter[0],
-  collectionsData.summer.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collectionsData.summer[0],
+  collections1Data.modern.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collections1Data.modern[0],
+  collections1Data.traditional.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collections1Data.traditional[0],
+  collections1Data.winter.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collections1Data.winter[0],
+  collections1Data.summer.find((p) => ["Trending", "Hot", "Sale", "New"].includes(p.badge)) || collections1Data.summer[0],
 ].filter(Boolean);
 
 // 4 collections with metadata updated to Coffee Brown / Beige tones
@@ -101,7 +101,7 @@ export default function ShopPage({ setCartOpen, navigateTo, setSelectedCollectio
       <div className="border-t border-[#e6dfd3] px-4 sm:px-8 pb-16 sm:pb-24 pt-12 sm:pt-20 md:px-16 lg:px-20">
         <div className="flex flex-col gap-16 sm:gap-24">
           {collectionSections.map((col) => {
-            const products = collectionsData[col.key]?.slice(0, 4) || [];
+            const products = collections1Data[col.key]?.slice(0, 4) || [];
             return (
               <div key={col.key}>
                 <div className="mb-6 sm:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
