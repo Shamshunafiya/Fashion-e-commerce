@@ -70,9 +70,9 @@ import summer13 from "../img/summer13.jpg";
 import summer14 from "../img/summer14.webp";
 import summer15 from "../img/summer15.webp";
 
-export {
-  offerbanner,
-};
+import offerbanner from "../img/offerbanner.avif";
+
+
 // ============================================================================
 // IMAGE EXPORT OBJECT
 // ============================================================================
@@ -146,6 +146,7 @@ export const images = {
   summer14,
   summer15,
 
+  offerbanner,
   // Slider Images (using existing photos)
   Slider1: trade1,
   Slider2: modern1,

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { collections1Data } from "../data/Collection.js";
 import ProductCard from "../components/ProductCard.jsx";
-import { offerbanner } from "../data/image.js";
+import { images } from "../data/image.js";
 
 const offerProducts = [
   ...collections1Data.modern.slice(0, 2),
@@ -23,7 +23,7 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         let { days, hours, minutes, seconds } = prev;
-        
+
         if (seconds > 0) {
           seconds--;
         } else if (minutes > 0) {
@@ -39,7 +39,7 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
           minutes = 59;
           seconds = 59;
         }
-        
+
         return { days, hours, minutes, seconds };
       });
     }, 1000);
@@ -53,7 +53,7 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
       <div
         className="relative overflow-hidden px-8 py-20 text-white md:px-16 lg:px-20"
         style={{
-          backgroundImage: `url(${offerbanner})`,
+          backgroundImage: `url(${images.offerbanner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -113,7 +113,7 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
           <p className="mb-6 text-center font-sans text-sm font-semibold uppercase tracking-[3px] text-[#d4af37]">
             Offer Expires In
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {/* Days */}
             <div className="flex flex-col items-center">
@@ -195,7 +195,7 @@ export default function OfferPage({ setCartOpen, navigateTo, setSelectedCollecti
               className="relative h-full"
             >
               <ProductCard item={item} setCartOpen={setCartOpen} navigateTo={navigateTo} />
-              
+
               {/* Discount Badge */}
               <div className="absolute top-4 right-4 z-10 rounded-full bg-[#d4af37] px-3 py-1.5 font-sans text-xs font-bold text-white shadow-lg">
                 -30%
